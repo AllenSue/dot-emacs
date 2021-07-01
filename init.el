@@ -1,15 +1,20 @@
+;; ui
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 (tooltip-mode -1)
-;; (toggle-frame-maximized)
-
+(setq inhibit-splash-screen 1)
+(toggle-frame-maximized)
 (global-hl-line-mode t)
+(set-frame-font "Fira Code-11" nil t)
+
+;; misc
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 (delete-selection-mode t)
 (global-auto-revert-mode t)
 
+;; package
 (require 'package)
 (require 'cl-lib)
 
@@ -23,25 +28,49 @@
 
 (package-initialize)
 
+;; completion
+(require-package 'company)
+(setq company-idle-delay 0)
+(setq company-minimun-prefix-length 1)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; counsel
 (require-package 'counsel)
 (ivy-mode t)
 
+;; theme
 (require-package 'dracula-theme)
 (load-theme 'dracula t)
 
+;; edit
+(require-package 'smartparens)
+(require 'smartparens-config)
+(show-smartparens-global-mode +1)
+(smartparens-global-mode 1)
+;; (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
+
 (require-package 'meow)
+(require 'meow)
 
 (meow-global-mode t)
 
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
+
   (meow-motion-overwrite-define-key
    '("j" . meow-next)
-   '("k" . meow-prev))
+   '("k" . meow-prev)
+   '("<escape>" . meow-cancel))
+  
   (meow-leader-define-key
-   ;; SPC j/k will run the original command in MOTION state.
+   '("b" . switch-to-buffer)
+   '("f" . find-file)
+   '("g" . magit)
+   '("i" . my/open-init-file)
    '("j" . meow-motion-origin-command)
    '("k" . meow-motion-origin-command)
+   '("q" . save-buffers-kill-emacs)
+   '("s" . save-buffer);; SPC j/k will run the original command in MOTION state.
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
@@ -54,7 +83,9 @@
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
    '("/" . meow-keypad-describe-key)
-   '("?" . meow-cheatsheet))
+   '("?" . meow-cheatsheet)
+   '("<tab>" . meow-last-buffer))
+
   (meow-normal-define-key
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
@@ -84,7 +115,6 @@
    '("E" . meow-next-symbol)
    '("f" . meow-find)
    '("F" . meow-find-expand)
-   '("g" . meow-cancel)
    '("G" . meow-grab)
    '("h" . meow-left)
    '("H" . meow-left-expand)
@@ -104,7 +134,6 @@
    '("p" . meow-yank)
    '("P" . meow-yank-pop)
    '("q" . meow-quit)
-   '("Q" . meow-goto-line)
    '("r" . meow-replace)
    '("R" . meow-swap-grab)
    '("s" . meow-kill)
@@ -125,13 +154,21 @@
    '("&" . meow-query-replace)
    '("%" . meow-query-replace-regexp)
    '("'" . repeat)
+   '(":" . meow-goto-line)
    '("\\" . quoted-insert)
-   '("<escape>" . meow-last-buffer)))
+   '("<escape>" . meow-cancel)))
 
 (with-eval-after-load "meow"
   (meow-setup)
   (meow-setup-line-number)
   (meow-setup-indicator))
+
+;; magit
+(require-package 'magit)
+(require 'magit)
+
+;; c-mode settings
+(setq-default c-basic-offset 4)
 
 (defun my/open-init-file ()
   (interactive)
