@@ -1,4 +1,6 @@
+.cache/
 auto-save-list/
 elpa/
+eshell/
 server/
 transient/

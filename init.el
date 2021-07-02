@@ -1,18 +1,4 @@
-;; ui
-(tool-bar-mode -1)
-(menu-bar-mode -1)
-(scroll-bar-mode -1)
-(tooltip-mode -1)
-(setq inhibit-splash-screen 1)
-(toggle-frame-maximized)
-(global-hl-line-mode t)
-(set-frame-font "Fira Code-11" nil t)
-
-;; misc
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(delete-selection-mode t)
-(global-auto-revert-mode t)
+(defconst is-windows (eq system-type 'windows-nt))
 
 ;; package
 (require 'package)
@@ -20,13 +6,74 @@
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
 			 ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+(package-initialize)
 
 (defun require-package (package)
   (when (not (package-installed-p package))
     (package-refresh-contents)
     (package-install package)))
 
-(package-initialize)
+(require-package 'use-package)
+(require 'use-package)
+
+;; ui
+(toggle-frame-maximized)
+(global-hl-line-mode t)
+(global-linum-mode t)
+
+;; font
+(when (window-system)
+  (set-frame-font "Fira Code-11"))
+
+(when (not is-windows)
+  (let ((alist '((33 . ".\\(?:\\(?:==\\|!!\\)\\|[!=]\\)")
+		 (35 . ".\\(?:###\\|##\\|_(\\|[#(?[_{]\\)")
+		 (36 . ".\\(?:>\\)")
+		 (37 . ".\\(?:\\(?:%%\\)\\|%\\)")
+		 (38 . ".\\(?:\\(?:&&\\)\\|&\\)")
+		 (42 . ".\\(?:\\(?:\\*\\*/\\)\\|\\(?:\\*[*/]\\)\\|[*/>]\\)")
+		 (43 . ".\\(?:\\(?:\\+\\+\\)\\|[+>]\\)")
+		 (45 . ".\\(?:\\(?:-[>-]\\|<<\\|>>\\)\\|[<>}~-]\\)")
+		 (46 . ".\\(?:\\(?:\\.[.<]\\)\\|[.=-]\\)")
+		 (47 . ".\\(?:\\(?:\\*\\*\\|//\\|==\\)\\|[*/=>]\\)")
+		 (48 . ".\\(?:x[a-zA-Z]\\)")
+		 (58 . ".\\(?:::\\|[:=]\\)")
+		 (59 . ".\\(?:;;\\|;\\)")
+		 (60 . ".\\(?:\\(?:!--\\)\\|\\(?:~~\\|->\\|\\$>\\|\\*>\\|\\+>\\|--\\|<[<=-]\\|=[<=>]\\||>\\)\\|[*$+~/<=>|-]\\)")
+		 (61 . ".\\(?:\\(?:/=\\|:=\\|<<\\|=[=>]\\|>>\\)\\|[<=>~]\\)")
+		 (62 . ".\\(?:\\(?:=>\\|>[=>-]\\)\\|[=>-]\\)")
+		 (63 . ".\\(?:\\(\\?\\?\\)\\|[:=?]\\)")
+		 (91 . ".\\(?:]\\)")
+		 (92 . ".\\(?:\\(?:\\\\\\\\\\)\\|\\\\\\)")
+		 (94 . ".\\(?:=\\)")
+		 (119 . ".\\(?:ww\\)")
+		 (123 . ".\\(?:-\\)")
+		 (124 . ".\\(?:\\(?:|[=|]\\)\\|[=>|]\\)")
+		 (126 . ".\\(?:~>\\|~~\\|[>=@~-]\\)")
+		 )
+               ))
+    (dolist (char-regexp alist)
+      (set-char-table-range composition-function-table (car char-regexp)
+                            `([,(cdr char-regexp) 0 font-shape-gstring])))))
+
+;; misc
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+(delete-selection-mode t)
+(global-auto-revert-mode t)
+
+(require-package 'which-key)
+(require 'which-key)
+(which-key-mode)
+
+(require-package 'treemacs)
+(require-package 'treemacs-magit)
+(setq treemacs-display-in-side-window t
+      treemacs-show-cursor nil)
+(treemacs-follow-mode t)
+(treemacs-filewatch-mode t)
+(treemacs-fringe-indicator-mode 'always)
 
 ;; completion
 (require-package 'company)
@@ -47,7 +94,6 @@
 (require 'smartparens-config)
 (show-smartparens-global-mode +1)
 (smartparens-global-mode 1)
-;; (add-hook 'emacs-lisp-mode-hook #'smartparens-mode)
 
 (require-package 'meow)
 (require 'meow)
@@ -64,13 +110,16 @@
   
   (meow-leader-define-key
    '("b" . switch-to-buffer)
+   '("d" . dired)
    '("f" . find-file)
    '("g" . magit)
    '("i" . my/open-init-file)
+   ;; SPC j/k will run the original command in MOTION state.
    '("j" . meow-motion-origin-command)
    '("k" . meow-motion-origin-command)
    '("q" . save-buffers-kill-emacs)
-   '("s" . save-buffer);; SPC j/k will run the original command in MOTION state.
+   '("s" . save-buffer)
+   '("t" . treemacs-select-window)
    ;; Use SPC (0-9) for digit arguments.
    '("1" . meow-digit-argument)
    '("2" . meow-digit-argument)
@@ -169,6 +218,10 @@
 
 ;; c-mode settings
 (setq-default c-basic-offset 4)
+
+(require-package 'citre)
+(require 'citre)
+(require 'citre-config)
 
 (defun my/open-init-file ()
   (interactive)
