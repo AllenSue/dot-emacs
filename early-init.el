@@ -12,6 +12,9 @@
 (tooltip-mode -1)
 (setq inhibit-splash-screen 1)
 
+;; Defer garbage collection further back in the startup process
+(setq gc-cons-threshold most-positive-fixnum)
+
 ;; Emacs calls `package-initialize' automatically since version 27+,
 ;; we handle package initialization in the init file, so prevent
 ;; Emacs from doing it early.

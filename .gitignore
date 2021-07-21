@@ -1,6 +1,8 @@
 .cache/
 auto-save-list/
 elpa/
+elpa-*
 eshell/
 server/
 transient/
+projectile*
