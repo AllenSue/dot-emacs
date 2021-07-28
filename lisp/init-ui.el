@@ -5,6 +5,9 @@
 (global-hl-line-mode t)
 (add-hook 'prog-mode-hook 'linum-mode)
 
+;; title
+(setq frame-title-format '("合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。"))
+
 ;; themes
 (require 'init-themes)
 

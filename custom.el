@@ -4,7 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(doom-modeline dracula-theme projectile citre treemacs-magit treemacs which-key smartparens evil-collection evil company counsel)))
+   '(company-c-headers yasnippet which-key treemacs-magit smartparens projectile evil-collection dracula-theme doom-modeline counsel company citre)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

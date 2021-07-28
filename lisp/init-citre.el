@@ -13,7 +13,6 @@
 
 (defun my--push-point-to-xref-marker-stack (&rest r)
   (xref-push-marker-stack (point-marker)))
-
 (dolist (func '(find-function
                 counsel-imenu
                 helm-imenu
@@ -24,15 +23,15 @@
                 citre-jump))
   (advice-add func :before 'my--push-point-to-xref-marker-stack))
 
-;; When lsp-mode is enabled, try lsp backend first, then citre
-(define-advice xref--create-fetcher (:around (-fn &rest -args) fallback)
-  (let ((fetcher (apply -fn -args))
-        (citre-fetcher
-         (let ((xref-backend-functions '(citre-xref-backend t)))
-           (apply -fn -args))))
-    (lambda ()
-      (or (with-demoted-errors "%s, fallback to citre"
-            (funcall fetcher))
-          (funcall citre-fetcher)))))
+;; ;; When lsp-mode is enabled, try lsp backend first, then citre
+;; (define-advice xref--create-fetcher (:around (-fn &rest -args) fallback)
+;;   (let ((fetcher (apply -fn -args))
+;;         (citre-fetcher
+;;          (let ((xref-backend-functions '(citre-xref-backend t)))
+;;            (apply -fn -args))))
+;;     (lambda ()
+;;       (or (with-demoted-errors "%s, fallback to citre"
+;;             (funcall fetcher))
+          ;; (funcall citre-fetcher)))))
 
 (provide 'init-citre)
