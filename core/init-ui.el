@@ -1,5 +1,7 @@
 ;;;
 
+(add-to-list 'load-path (expand-file-name "ui" user-emacs-directory))
+
 ;; ui
 (toggle-frame-maximized)
 (global-hl-line-mode t)
@@ -8,10 +10,7 @@
 ;; title
 (setq frame-title-format '("合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。"))
 
-;; themes
 (require 'init-themes)
-
-;; modeline
 (require 'init-modeline)
 
 ;; font

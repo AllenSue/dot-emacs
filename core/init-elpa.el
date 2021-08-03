@@ -7,7 +7,7 @@
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version) user-emacs-directory))
 
 (setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-			 ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+                         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -27,5 +27,9 @@ re-downloaded in order to locate PACKAGE."
         (package-installed-p package min-version))))
 
 (package-initialize)
+
+(require-package 'use-package)
+(eval-when-compile
+  (require 'use-package))
 
 (provide 'init-elpa)
