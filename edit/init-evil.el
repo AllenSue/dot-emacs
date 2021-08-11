@@ -18,6 +18,7 @@
   :config
   ;; Set <space> as leader key
   (evil-set-leader 'normal (kbd "<SPC>"))
+  (evil-set-leader 'visual (kbd "<SPC>"))
 
   ;; command
   (with-eval-after-load 'ivy
@@ -44,7 +45,8 @@
 
   ;; lsp
   (with-eval-after-load 'lsp-mode
-    (evil-define-key 'normal 'global (kbd "<leader>l") 'lsp-command-map))
+    (evil-define-key 'normal 'global (kbd "<leader>lf") 'lsp-format-buffer)
+    (evil-define-key 'normal 'global (kbd "<leader>lr") 'lsp-find-references))
 
   ;; project
   (with-eval-after-load 'projectile
