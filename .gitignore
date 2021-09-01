@@ -6,3 +6,5 @@ eshell/
 server/
 transient/
 projectile*
+session*
+.lsp*
