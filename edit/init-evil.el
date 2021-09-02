@@ -46,7 +46,8 @@
   ;; lsp
   (with-eval-after-load 'lsp-mode
     (evil-define-key 'normal 'global (kbd "<leader>lf") 'lsp-format-buffer)
-    (evil-define-key 'normal 'global (kbd "<leader>lr") 'lsp-find-references))
+    (evil-define-key 'normal 'global (kbd "<leader>lr") 'lsp-find-references)
+    (evil-define-key 'normal 'global (kbd "<leader>ln") 'lsp-rename))
 
   ;; project
   (with-eval-after-load 'projectile
@@ -56,7 +57,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>q") 'save-buffers-kill-emacs)
 
   ;; search
-  (evil-define-key 'normal 'global (kbd "<leader>*") 'counsel-rg)
+  (evil-define-key 'normal 'global (kbd "<leader>s") 'my/search-symbol-rg)
 
   ;; version control
   (with-eval-after-load 'magit

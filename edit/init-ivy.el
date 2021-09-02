@@ -17,4 +17,13 @@
 (use-package counsel
   :ensure t)
 
+(defun my/symbol-at-point ()
+  "Get the symbol at point and strip its properties."
+  (substring-no-properties (or (thing-at-point 'symbol) "")))
+
+(defun my/search-symbol-rg ()
+  "Call counsel-rg with current symbol"
+  (interactive)
+  (counsel-rg (my/symbol-at-point)))
+
 (provide 'init-ivy)
