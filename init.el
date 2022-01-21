@@ -8,8 +8,10 @@
 
 (require 'init-core)
 
-(when is-windows
- (setq gc-cons-threshold (* 512 1024 1024))
- (setq gc-cons-percentage 0.5)
- (run-with-idle-timer 5 t #'garbage-collect) 
- (setq garbage-collection-messages t))
+(defun my-cleanup-gc ()
+  "Clean up gc."
+  (setq gc-cons-threshold  67108864) ; 64M
+  (setq gc-cons-percentage 0.1) ; original value
+  (garbage-collect))
+
+(run-with-idle-timer 4 nil #'my-cleanup-gc)

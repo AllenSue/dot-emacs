@@ -1,8 +1,6 @@
 ;;;
 
-(use-package dracula-theme
-  :ensure t
-  :config
-  (load-theme 'dracula t))
+(require-package 'dracula-theme)
+(load-theme 'dracula t)
 
 (provide 'init-themes)

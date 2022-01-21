@@ -19,6 +19,7 @@ re-downloaded in order to locate PACKAGE."
                                       (version-list-<= (package-desc-version b)
                                                        (package-desc-version a)))))))
         (if (and best (version-list-<= min-version (package-desc-version best)))
+		    ;(format-message "%s" best)
             (package-install best)
           (if no-refresh
               (error "No version of %s >= %S is available" package min-version)
@@ -27,9 +28,5 @@ re-downloaded in order to locate PACKAGE."
         (package-installed-p package min-version))))
 
 (package-initialize)
-
-(require-package 'use-package)
-(eval-when-compile
-  (require 'use-package))
 
 (provide 'init-elpa)

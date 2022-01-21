@@ -1,83 +1,61 @@
 ;;;
 
-(use-package evil
-  :ensure t
-  :hook (after-init . evil-mode)
-  :init
-  ;; Keybindings behaviour
-  (setq evil-want-C-u-scroll t)
-  (setq evil-disable-insert-state-bindings t)
+(require-package 'evil)
 
-  ;; Cursor movement
-  (setq evil-move-cursor-back nil)
+;; Keybindings behaviour
+(setq evil-want-C-u-scroll t)
+(setq evil-want-C-w-delete nil)
+(setq evil-disable-insert-state-bindings t)
 
-  ;; evil-collection assumes `evil-want-keybinding' is set to nil and `evil-want-integration'
-  ;; is set to t before loading evil and evil-collection. `evil-want-keybinding' is already
-  ;; set to t by default, we only set `evil-want-keybinding' here.
-  (setq evil-want-keybinding nil)
-  :config
-  ;; Set <space> as leader key
-  (evil-set-leader 'normal (kbd "<SPC>"))
-  (evil-set-leader 'visual (kbd "<SPC>"))
+;; Cursor movement
+(setq evil-move-cursor-back nil)
 
-  ;; command
-  (with-eval-after-load 'ivy
-    (evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x))
+(setq evil-shift-width 0)
 
-  ;; buffer
-  (evil-define-key 'normal 'global (kbd "<leader><tab>") 'evil-switch-to-windows-last-buffer)
-  (evil-define-key 'normal 'global (kbd "<leader>bb") 'counsel-switch-buffer)
-  (evil-define-key 'normal 'global (kbd "<leader>bd") 'kill-this-buffer)
+(require 'evil)
+(add-hook 'after-init-hook 'evil-mode)
 
-  ;; comment
-  (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
+;; Set <space> as leader key
+(evil-set-leader 'normal (kbd "<SPC>"))
+(evil-set-leader 'visual (kbd "<SPC>"))
 
-  ;; file
-  (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
-  (evil-define-key 'normal 'global (kbd "<leader>fi") 'my/open-init-file)
-  (evil-define-key 'normal 'global (kbd "<leader>fs") 'save-buffer)
-  (evil-define-key 'normal 'global (kbd "<leader>ft") 'treemacs)
+;; command
+(evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x)
 
-  ;; goto
-  ;; (evil-define-key 'normal 'global (kbd "<leader>gd") 'citre-jump+)
-  (with-eval-after-load 'ivy
-    (evil-define-key 'normal 'global (kbd "<leader>gs") 'counsel-imenu))
+;; buffer
+(evil-define-key 'normal 'global (kbd "<leader><tab>") 'evil-switch-to-windows-last-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>bb") 'counsel-switch-buffer)
+(evil-define-key 'normal 'global (kbd "<leader>bd") 'kill-this-buffer)
 
-  ;; lsp
-  (with-eval-after-load 'lsp-mode
-    (evil-define-key 'normal 'global (kbd "<leader>lf") 'lsp-format-buffer)
-    (evil-define-key 'normal 'global (kbd "<leader>lr") 'lsp-find-references)
-    (evil-define-key 'normal 'global (kbd "<leader>ln") 'lsp-rename))
+;; comment
+(evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
 
-  ;; project
-  (with-eval-after-load 'projectile
-    (evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-command-map))
+;; file
+(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
+(evil-define-key 'normal 'global (kbd "<leader>fi") 'my/open-init-file)
+(evil-define-key 'normal 'global (kbd "<leader>fs") 'save-buffer)
 
-  ;; quit
-  (evil-define-key 'normal 'global (kbd "<leader>q") 'save-buffers-kill-emacs)
+;; git
+(evil-define-key 'normal 'global (kbd "<leader>gs") 'magit-status)
 
-  ;; search
-  (evil-define-key 'normal 'global (kbd "<leader>s") 'my/search-symbol-rg)
+;; project
+(evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-command-map)
 
-  ;; version control
-  (with-eval-after-load 'magit
-    (evil-define-key 'normal 'global (kbd "<leader>vg") 'magit-status))
+;; quit
+(evil-define-key 'normal 'global (kbd "<leader>qq") 'save-buffers-kill-emacs)
 
-  ;; window
-  (evil-define-key 'normal 'global (kbd "<leader>w2") 'evil-window-split)
-  (evil-define-key 'normal 'global (kbd "<leader>wd") 'evil-window-delete)
-  (evil-define-key 'normal 'global (kbd "<leader>wh") 'evil-window-left)
-  (evil-define-key 'normal 'global (kbd "<leader>wj") 'evil-window-bottom)
-  (evil-define-key 'normal 'global (kbd "<leader>wk") 'evil-window-top)
-  (evil-define-key 'normal 'global (kbd "<leader>wl") 'evil-window-right)
-  (evil-define-key 'normal 'global (kbd "<leader>wm") 'delete-other-windows)
-  (evil-define-key 'normal 'global (kbd "<leader>wv") 'evil-window-vsplit))
+;; search/symbol
+(evil-define-key 'normal 'global (kbd "<leader>si") 'counsel-imenu)
+(evil-define-key 'normal 'global (kbd "<leader>ss") 'my/search-symbol-rg)
 
-(use-package evil-collection
-  :ensure t
-  :after evil
-  :config
-  ;; Use evil everywhere
-  (evil-collection-init))
+;; window
+(evil-define-key 'normal 'global (kbd "<leader>w2") 'evil-window-split)
+(evil-define-key 'normal 'global (kbd "<leader>wd") 'evil-window-delete)
+(evil-define-key 'normal 'global (kbd "<leader>wh") 'evil-window-left)
+(evil-define-key 'normal 'global (kbd "<leader>wj") 'evil-window-bottom)
+(evil-define-key 'normal 'global (kbd "<leader>wk") 'evil-window-top)
+(evil-define-key 'normal 'global (kbd "<leader>wl") 'evil-window-right)
+(evil-define-key 'normal 'global (kbd "<leader>wm") 'delete-other-windows)
+(evil-define-key 'normal 'global (kbd "<leader>wv") 'evil-window-vsplit)
 
 (provide 'init-evil)

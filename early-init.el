@@ -13,6 +13,7 @@
 (setq inhibit-splash-screen 1)
 
 ;; Defer garbage collection further back in the startup process
+(setq gc-cons-percentage 0.6)
 (setq gc-cons-threshold most-positive-fixnum)
 
 ;; Emacs calls `package-initialize' automatically since version 27+,

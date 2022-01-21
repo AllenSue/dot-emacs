@@ -8,10 +8,9 @@
 (require 'init-elpa)
 
 (require 'init-edit)
-(require 'init-file-browser)
+(require 'init-git)
 (require 'init-misc)
 (require 'init-program)
 (require 'init-ui)
-(require 'init-vc)
 
 (provide 'init-core)
