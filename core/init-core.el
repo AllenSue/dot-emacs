@@ -10,6 +10,7 @@
 (require 'init-edit)
 (require 'init-git)
 (require 'init-misc)
+(require 'init-org)
 (require 'init-program)
 (require 'init-ui)
 

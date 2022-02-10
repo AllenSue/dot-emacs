@@ -12,5 +12,6 @@
 (require 'init-company)
 (require 'init-evil)
 (require 'init-ivy)
+(require 'init-smartparens)
 
 (provide 'init-edit)
