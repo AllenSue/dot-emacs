@@ -1,4 +1,5 @@
 ;;;
+;; -*- lexical-binding: t -*-
 
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 

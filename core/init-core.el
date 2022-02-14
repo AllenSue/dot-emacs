@@ -1,4 +1,5 @@
 ;;;
+;; -*- lexical-binding: t -*-
 
 ;; misc
 (setq make-backup-files nil)
