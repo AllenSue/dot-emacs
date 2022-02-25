@@ -9,6 +9,7 @@
 (add-hook 'after-init-hook 'popwin-mode)
 
 (setq popwin:popup-window-height 25)
+(push '("*Youdao Dictionary*" :noselect t) popwin:special-display-config)
 (fset 'popwin:keymap popwin:keymap)
 
 (provide 'init-window)
