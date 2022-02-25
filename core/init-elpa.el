@@ -6,8 +6,10 @@
 (setq package-user-dir
       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version) user-emacs-directory))
 
-(setq package-archives '(("gnu"   . "http://elpa.emacs-china.org/gnu/")
-                         ("melpa" . "http://elpa.emacs-china.org/melpa/")))
+(setq package-archives '(("gnu"          . "http://elpa.gnu.org/packages/")
+                         ("melpa"        . "http://melpa.org/packages/")
+                         ("melpa-stable" . "http://stable.melpa.org/packages/")
+                         ))
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -19,7 +21,7 @@ re-downloaded in order to locate PACKAGE."
                                       (version-list-<= (package-desc-version b)
                                                        (package-desc-version a)))))))
         (if (and best (version-list-<= min-version (package-desc-version best)))
-		    ;(format-message "%s" best)
+                                        ;(format-message "%s" best)
             (package-install best)
           (if no-refresh
               (error "No version of %s >= %S is available" package min-version)

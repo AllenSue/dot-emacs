@@ -1,5 +1,8 @@
-;;;
-;; -*- lexical-binding: t -*-
+;;; init.el --- Entry of Emacs configuration  -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
 
 (defconst is-windows (eq system-type 'windows-nt))
 
@@ -13,3 +16,5 @@
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (require 'init-core)
+
+;;; init.el ends here

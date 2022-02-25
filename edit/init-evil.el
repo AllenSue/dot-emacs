@@ -1,4 +1,8 @@
-;;;
+;;; init-evil.el --- Evil packages initialize  -*- lexical-binding: t -*-
+
+;;; Commentary:
+
+;;; Code:
 
 (require-package 'evil)
 
@@ -9,15 +13,15 @@
 
 ;; Cursor movement
 (setq evil-move-cursor-back nil)
-
 (setq evil-shift-width 0)
 
 (require 'evil)
 (add-hook 'after-init-hook 'evil-mode)
 
 ;; Set <space> as leader key
-(evil-set-leader 'normal (kbd "<SPC>"))
-(evil-set-leader 'visual (kbd "<SPC>"))
+(evil-set-leader '(normal visual motion) (kbd "<SPC>"))
+
+;;; Global keybindings
 
 ;; command
 (evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x)
@@ -31,6 +35,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
 
 ;; file
+(evil-define-key 'normal 'global (kbd "<leader>fd") 'dired)
 (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
 (evil-define-key 'normal 'global (kbd "<leader>fi") 'my/open-init-file)
 (evil-define-key 'normal 'global (kbd "<leader>fs") 'save-buffer)
@@ -56,6 +61,15 @@
 (evil-define-key 'normal 'global (kbd "<leader>wk") 'evil-window-top)
 (evil-define-key 'normal 'global (kbd "<leader>wl") 'evil-window-right)
 (evil-define-key 'normal 'global (kbd "<leader>wm") 'delete-other-windows)
+(evil-define-key 'normal 'global (kbd "<leader>wp") 'popwin:keymap)
 (evil-define-key 'normal 'global (kbd "<leader>wv") 'evil-window-vsplit)
 
+;;; Specific mode keybindings
+
+;; Info mode
+(evil-define-key '(normal visual motion) Info-mode-map (kbd "<return>") 'Info-follow-nearest-node)
+(evil-define-key '(normal visual motion) Info-mode-map (kbd "n") 'Info-next)
+
 (provide 'init-evil)
+
+;;; init-evil ends here

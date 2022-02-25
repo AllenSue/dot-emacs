@@ -1,11 +1,10 @@
-;;;
-;; -*- lexical-binding: t -*-
+;;; init-core.el ---  -*- lexical-binding: t -*-
 
-;; misc
-(setq make-backup-files nil)
-(setq auto-save-default nil)
-(setq create-lockfiles nil)
+;;; Commentary:
 
+;;; Code:
+
+(require 'init-utils)
 (require 'init-elpa)
 
 (require 'init-edit)
@@ -23,3 +22,5 @@
 (run-with-idle-timer 4 nil #'my-cleanup-gc)
 
 (provide 'init-core)
+
+;;; init-core ends here

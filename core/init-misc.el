@@ -1,18 +1,20 @@
-;;;
-;; -*- lexical-binding: t -*-
+;;; init-misc ---   -*- lexical-binding: t -*-
 
-(defun my/open-init-file ()
-  "Open initiliazed file."
-  (interactive)
-  (find-file (expand-file-name "init.el" user-emacs-directory)))
+;;; Commentary:
 
-(defun my/indent-buffer ()
-  "Indent current buffer."
-  (interactive)
-  (indent-region (point-min) (point-max)))
+;;; Code:
 
-(defun my-skip-vc-refresh ()
-  nil)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+(setq create-lockfiles nil)
+
 (advice-add 'vc-after-save :override #'my-skip-vc-refresh)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
+(require-package 'youdao-dictionary)
+(global-set-key (kbd "C-c y") 'youdao-dictionary-search-at-point-tooltip)
+
 (provide 'init-misc)
+
+;;; init-misc ends here

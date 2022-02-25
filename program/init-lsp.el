@@ -1,20 +1,14 @@
-;;;
+;;; init-lsp.el --- Initialize lsp functional  -*- lexical-binding: t -*-
 
-(use-package lsp-mode
-  :ensure t
-  :commands (lsp lsp-deferred))
+;;; Commentary:
 
-(use-package lsp-ui
-  :after (lsp-mode)
-  :ensure t
-  :config
-  ;; (setq lsp-ui-sideline-show-hover t)
-  (setq lsp-ui-sideline-update-mode 'line))
+;;; Code:
 
-(use-package lsp-treemacs
-  :after (lsp-mode treemacs)
-  :ensure t
-  :config
-  (add-hook 'lsp-mode-hook 'lsp-treemacs-sync-mode))
+(require-package 'lsp-mode)
+
+(add-hook 'prog-mode-hook #'lsp)
+(add-hook 'prog-mode-hook #'lsp-deferred)
 
 (provide 'init-lsp)
+
+;;; init-lsp.el ends here
