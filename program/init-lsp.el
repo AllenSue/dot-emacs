@@ -6,8 +6,8 @@
 
 (require-package 'lsp-mode)
 
-(add-hook 'prog-mode-hook #'lsp)
-(add-hook 'prog-mode-hook #'lsp-deferred)
+(add-hook 'c-mode-common-hook #'lsp)
+(add-hook 'c-mode-common-hook #'lsp-deferred)
 
 (provide 'init-lsp)
 

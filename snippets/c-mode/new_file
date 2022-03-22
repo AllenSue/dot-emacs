@@ -1,20 +1,17 @@
 # -*- mode: snippet -*-
 #name : new_file
-# uuid:
-#key : nfl
+#key  : nfl
 #contributor : Allen
 # --
 /**
  * *****************************************************************************
- * COPYRIGHT (c) `(format-time-string "%Y")` HiRain Technologies. All rights reserved.
+ * COPYRIGHT (c) `(format-time-string "%Y")` HiRain Technologies.
  *
  * @FILENAME   `(file-name-nondirectory(buffer-file-name))`
  * @DATE       `(format-time-string "%Y-%m-%d")`
  * @AUTHOR     Sue
  */
 
-
 $0
-
 
 /* ****************************** END OF FILE ******************************* */

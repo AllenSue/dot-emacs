@@ -1,4 +1,4 @@
-;;; init-core.el ---  -*- lexical-binding: t -*-
+;;; init-core.el --- Initialize entry.  -*- lexical-binding: t -*-
 
 ;;; Commentary:
 
@@ -8,6 +8,7 @@
 (require 'init-elpa)
 
 (require 'init-edit)
+(require 'init-broswer)
 (require 'init-git)
 (require 'init-misc)
 (require 'init-org)

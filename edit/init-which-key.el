@@ -1,4 +1,6 @@
-;;; init-which-key.el --- which-key package initialize.
+;;; init-which-key.el --- which-key package initialize.  -*- lexical-binding: t -*-
+
+;;; Commentary:
 
 ;;; Code:
 

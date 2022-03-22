@@ -23,7 +23,8 @@
 
 ;;; Global keybindings
 
-;; command
+;; frequent command
+(evil-define-key '(motion) 'global (kbd "@") 'youdao-dictionary-search-at-point-tooltip)
 (evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x)
 
 ;; buffer
@@ -35,7 +36,7 @@
 (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
 
 ;; file
-(evil-define-key 'normal 'global (kbd "<leader>fd") 'dired)
+(evil-define-key 'normal 'global (kbd "<leader>fd") 'dired-jump)
 (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
 (evil-define-key 'normal 'global (kbd "<leader>fi") 'my/open-init-file)
 (evil-define-key 'normal 'global (kbd "<leader>fs") 'save-buffer)
@@ -69,6 +70,9 @@
 ;; Info mode
 (evil-define-key '(normal visual motion) Info-mode-map (kbd "<return>") 'Info-follow-nearest-node)
 (evil-define-key '(normal visual motion) Info-mode-map (kbd "n") 'Info-next)
+
+;; lsp mode
+(evil-define-key '(normal visual motion) lsp-mode-map (kbd "<leader>lr") 'xref-find-references)
 
 (provide 'init-evil)
 

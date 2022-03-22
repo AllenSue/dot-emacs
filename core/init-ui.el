@@ -8,11 +8,11 @@
 
 ;; ui
 (global-hl-line-mode t)
-(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'after-init-hook 'global-display-line-numbers-mode)
 
 ;; font
 (when (window-system)
-  (set-frame-font "Fira Code-11"))
+  (set-face-attribute 'default nil :family "Fira Code" :height 110))
 
 (require 'init-frame)
 (require 'init-theme)

@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+#name : header_once
+#key  : once
+#contributor : Allen
+# --
+#ifndef ${1:__`(upcase (file-name-nondirectory (file-name-sans-extension buffer-file-name)))`__}
+#define $1
+
+$0
+
+#endif /* $1 */

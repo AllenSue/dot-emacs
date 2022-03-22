@@ -1,10 +1,13 @@
 .cache/
+.lsp*
 auto-save-list/
-elpa/
-elpa-*
+elpa*/
 eshell/
 server/
 transient/
+url/
+bookmarks
+network-security.data
 projectile*
+recentf
 session*
-.lsp*
