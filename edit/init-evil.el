@@ -5,10 +5,13 @@
 ;;; Code:
 
 (require-package 'evil)
+(require-package 'evil-collection)
 
 ;; Keybindings behaviour
+(setq evil-want-keybinding nil)
 (setq evil-want-C-u-scroll t)
 (setq evil-want-C-w-delete nil)
+(setq evil-want-integration t)
 (setq evil-disable-insert-state-bindings t)
 
 ;; Cursor movement
@@ -35,6 +38,9 @@
 ;; comment
 (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
 
+;; errors
+(evil-define-key '(normal) prog-mode-map (kbd "<leader>el") 'flycheck-list-errors)
+
 ;; file
 (evil-define-key 'normal 'global (kbd "<leader>fd") 'dired-jump)
 (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
@@ -43,6 +49,12 @@
 
 ;; git
 (evil-define-key 'normal 'global (kbd "<leader>gs") 'magit-status)
+
+;; lsp
+(evil-define-key '(normal) lsp-mode-map (kbd "<leader>ld") 'lsp-find-definition)
+(evil-define-key '(normal) lsp-mode-map (kbd "<leader>lf") 'lsp-format-buffer)
+(evil-define-key '(normal) lsp-mode-map (kbd "<leader>ln") 'lsp-rename)
+(evil-define-key '(normal) lsp-mode-map (kbd "<leader>lr") 'lsp-find-references)
 
 ;; project
 (evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-command-map)
@@ -73,6 +85,9 @@
 
 ;; lsp mode
 (evil-define-key '(normal visual motion) lsp-mode-map (kbd "<leader>lr") 'xref-find-references)
+
+(with-eval-after-load 'evil
+  (evil-collection-init))
 
 (provide 'init-evil)
 
