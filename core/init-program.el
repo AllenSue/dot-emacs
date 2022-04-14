@@ -5,7 +5,7 @@
 
 (require 'init-cc)
 (require 'init-elisp)
-;; (require 'init-lsp)
+(require 'init-lsp)
 (require 'init-projectile)
 
 (provide 'init-program)

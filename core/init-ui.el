@@ -11,10 +11,17 @@
 (add-hook 'after-init-hook 'global-display-line-numbers-mode)
 
 ;; font
-(when (window-system)
-  (set-face-attribute 'default nil :family "Fira Code" :height 110))
+(require-package 'all-the-icons)
+(when (display-graphic-p)
+  (progn
+    (require 'all-the-icons)
+    (setq all-the-icons-color-icons nil)
+    ;; Don’t compact font caches during GC.
+    (setq inhibit-compacting-font-caches t)
+    (set-face-attribute 'default nil :family "Fira Code" :height 110)))
 
 (require 'init-frame)
+(require 'init-modeline)
 (require 'init-theme)
 (require 'init-window)
 
