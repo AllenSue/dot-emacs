@@ -9,6 +9,7 @@
 (when is-windows
   (setq auto-mode-case-fold nil)
   (setq w32-get-true-file-attributes nil)    ; decrease file IO workload
+  (setq w32-pipe-read-delay 0)
   (setq w32-pipe-buffer-size (* 64 1024)))   ; read more at a time (was 4K)
 
 ;; Increase how much is read from processes in a single chunk (default is 4kb)
@@ -66,13 +67,8 @@
           #'command-completion-default-include-p))
 
   ;; Visualize TAB, (HARD) SPACE, NEWLINE
-  (setq-default show-trailing-whitespace t) ; Show trailing whitespace by default
+  (setq-default show-trailing-whitespace nil) ; Don't show trailing whitespace by default
   )
-
-(use-package time
-  :ensure nil
-  :init (setq display-time-24hr-format t
-              display-time-day-and-date t))
 
 (use-package so-long
   :hook (after-init-hook . global-so-long-mode))
@@ -81,13 +77,17 @@
 (if (boundp 'use-short-answers)
     (setq use-short-answers t)
   (fset 'yes-or-no-p 'y-or-n-p))
+(setq-default major-mode 'text-mode)
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
-;; Frame
-(when (display-graphic-p)
-  (add-hook 'window-setup-hook #'fix-fullscreen-cocoa)
-  )
+(setq visible-bell t)
+(setq inhibit-compacting-font-caches t)  ; Don’t compact font caches during GC.
+(setq make-backup-files nil)             ; Forbide to make backup files
+(setq auto-save-default nil)             ; Disable auto save
+(setq create-lockfiles nil)
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets) ; Show path if names are same
+
 
 (provide 'init-basic)
 

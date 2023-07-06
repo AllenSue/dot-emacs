@@ -3,10 +3,6 @@
 (require 'package)
 (require 'cl-lib)
 
-;;(setq package-user-dir
-;;      (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version) user-emacs-directory))
-
-
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
 If NO-REFRESH is non-nil, the available package lists will not be
@@ -25,6 +21,7 @@ re-downloaded in order to locate PACKAGE."
             (require-package package min-version t)))
         (package-installed-p package min-version)))
 		)
-		
+
+;;(package-initialize)		
 
 (provide 'init-elpa)

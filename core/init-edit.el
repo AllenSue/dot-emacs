@@ -15,13 +15,13 @@
 (with-eval-after-load 'ediff
   (setq ediff-split-window-function 'split-window-horizontally))
 
-;;(require 'init-company)
+(require 'init-company)
 (require 'init-evil)
 ;;(require 'init-flycheck)
 (require 'init-ivy)
 ;;(require 'init-smartparens)
-;;(require 'init-which-key)
-;;(require 'init-ripgrep)
+(require 'init-which-key)
+(require 'init-ripgrep)
 ;;(require 'init-yasnippet)
 
 (provide 'init-edit)

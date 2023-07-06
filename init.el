@@ -7,6 +7,12 @@
 (when (version< emacs-version "27.1")
   (error "This requires Emacs 27.1 and above!"))
 
+;; Prevent flashing of unstyled modeline at startup
+(setq-default mode-line-format nil)
+
+;; Don't pass case-insensitive to `auto-mode-alist'
+(setq auto-mode-case-fold nil)
+
 (add-hook 'emacs-startup-hook
           (lambda ()
             (message (format "Packages loaded in %.2f seconds."
