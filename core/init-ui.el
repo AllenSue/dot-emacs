@@ -20,11 +20,15 @@
     (setq inhibit-compacting-font-caches t)
     (set-face-attribute 'default nil :family "Fira Code" :height 110)))
 
-(require 'init-frame)
+;; cursor
+(blink-cursor-mode nil)
+(setq x-stretch-cursor t)
+(setq cursor-in-non-selected-windows nil)
+
 (require 'init-modeline)
 (require 'init-theme)
 (require 'init-window)
 
-(provide 'init-ui)
+;; (provide 'init-ui)
 
 ;;; init-ui ends here

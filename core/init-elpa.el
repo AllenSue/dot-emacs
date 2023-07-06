@@ -3,13 +3,9 @@
 (require 'package)
 (require 'cl-lib)
 
-(setq package-user-dir
-      (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version) user-emacs-directory))
+;;(setq package-user-dir
+;;      (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version) user-emacs-directory))
 
-(setq package-archives '(("gnu"          . "http://elpa.gnu.org/packages/")
-                         ("melpa"        . "http://melpa.org/packages/")
-                         ("melpa-stable" . "http://stable.melpa.org/packages/")
-                         ))
 
 (defun require-package (package &optional min-version no-refresh)
   "Install given PACKAGE, optionally requiring MIN-VERSION.
@@ -27,8 +23,8 @@ re-downloaded in order to locate PACKAGE."
               (error "No version of %s >= %S is available" package min-version)
             (package-refresh-contents)
             (require-package package min-version t)))
-        (package-installed-p package min-version))))
-
-(package-initialize)
+        (package-installed-p package min-version)))
+		)
+		
 
 (provide 'init-elpa)

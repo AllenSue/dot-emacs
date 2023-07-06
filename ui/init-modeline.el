@@ -11,8 +11,7 @@
 (add-hook 'doom-modeline-mode-hook #'column-number-mode)
 
 (setq doom-modeline-support-imenu t)
-(setq doom-modeline-buffer-modification-icon nil)
-(setq doom-modeline-checker-simple-format nil)
+(setq doom-modeline-checker-simple-format t)
 (setq doom-modeline-major-mode-icon nil)
 
 (provide 'init-modeline)

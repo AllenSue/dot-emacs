@@ -6,34 +6,23 @@
 
 (add-to-list 'load-path (expand-file-name "edit" user-emacs-directory))
 
-;; basic
+;; Basic
 (prefer-coding-system 'utf-8-unix)
 (delete-selection-mode t)
-(add-hook 'after-init-hook 'global-auto-revert-mode)
+(global-auto-revert-mode t)
 
-;; TAB
-(setq-default tab-width 4)
-(setq-default indent-tabs-mode nil)
+;;; Ediff
+(with-eval-after-load 'ediff
+  (setq ediff-split-window-function 'split-window-horizontally))
 
-;;; scroll
-
-;; Keyboard scroll
-(setq scroll-step 1)
-(setq scroll-conservatively 10000)
-
-;; Mouse scroll
-(setq mouse-wheel-scroll-amount '(amount '(1 ((shift) . 1) ((control) . nil))))
-(setq mouse-wheel-progressive-speed nil)
-(setq mouse-wheel-follow-mouse 't)
-
-(require 'init-company)
+;;(require 'init-company)
 (require 'init-evil)
-(require 'init-flycheck)
+;;(require 'init-flycheck)
 (require 'init-ivy)
-(require 'init-smartparens)
-(require 'init-which-key)
-(require 'init-ripgrep)
-(require 'init-yasnippet)
+;;(require 'init-smartparens)
+;;(require 'init-which-key)
+;;(require 'init-ripgrep)
+;;(require 'init-yasnippet)
 
 (provide 'init-edit)
 

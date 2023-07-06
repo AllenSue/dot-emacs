@@ -11,15 +11,10 @@
 ;;; Code:
 
 ;; Set UI elements
-(when (and (fboundp 'menu-bar-mode) (not (eq menu-bar-mode -1)))
-  (menu-bar-mode -1))
-(when (and (fboundp 'tool-bar-mode) (not (eq tool-bar-mode -1)))
-  (tool-bar-mode -1))
-(when (and (fboundp 'scroll-bar-mode) (not (eq scroll-bar-mode -1)))
-  (scroll-bar-mode -1))
-(when (and (fboundp 'tooltip-mode) (not (eq tooltip-mode -1)))
-  (tooltip-mode -1))
-(setq inhibit-splash-screen 1)
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars) default-frame-alist)
+(setq inhibit-splash-screen t)
 
 ;; Defer garbage collection further back in the startup process
 (setq gc-cons-percentage 0.6)

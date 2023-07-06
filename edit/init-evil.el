@@ -27,11 +27,13 @@
 ;;; Global keybindings
 
 ;; frequent command
-(evil-define-key '(motion) 'global (kbd "@") 'youdao-dictionary-search-at-point-tooltip)
+(evil-define-key '(normal motion) 'global (kbd "@") 'youdao-dictionary-search-at-point-tooltip)
 (evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x)
 
 ;; buffer
-(evil-define-key 'normal 'global (kbd "<leader><tab>") 'evil-switch-to-windows-last-buffer)
+(if (display-graphic-p)
+    (evil-define-key 'normal 'global (kbd "<leader><tab>") 'evil-switch-to-windows-last-buffer)
+  (evil-define-key 'normal 'global (kbd "<leader>TAB") 'evil-switch-to-windows-last-buffer))
 (evil-define-key 'normal 'global (kbd "<leader>bb") 'counsel-switch-buffer)
 (evil-define-key 'normal 'global (kbd "<leader>bd") 'kill-this-buffer)
 
@@ -80,7 +82,9 @@
 ;;; Specific mode keybindings
 
 ;; Info mode
-(evil-define-key '(normal visual motion) Info-mode-map (kbd "<return>") 'Info-follow-nearest-node)
+(if (display-graphic-p)
+    (evil-define-key '(normal visual motion) Info-mode-map (kbd "<return>") 'Info-follow-nearest-node)
+  (evil-define-key '(normal visual motion) Info-mode-map (kbd "RET") 'Info-follow-nearest-node))
 (evil-define-key '(normal visual motion) Info-mode-map (kbd "n") 'Info-next)
 
 ;; lsp mode
