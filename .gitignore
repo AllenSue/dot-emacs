@@ -1,4 +1,5 @@
 auto-save-list/
+custom.el
 elpa/*
 eshell/
 server/
@@ -6,6 +7,7 @@ transient/
 url/
 bookmarks
 network-security.data
+places
 projectile*
 recentf
 session*
