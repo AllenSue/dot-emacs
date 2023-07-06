@@ -4,8 +4,11 @@
 
 ;;; Code:
 
-(defconst is-windows (eq system-type 'windows-nt)
+(defconst windowsp (eq system-type 'windows-nt)
   "Windows system.")
+
+(defconst emacs>=27p (>= emacs-major-version 27)
+  "Emacs is 27 or above.")
 
 (provide 'init-const)
 

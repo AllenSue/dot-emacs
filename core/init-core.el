@@ -7,7 +7,6 @@
 (require 'init-utils)
 (require 'init-elpa)
 
-(require 'init-edit)
 (require 'init-broswer)
 (require 'init-git)
 (require 'init-misc)

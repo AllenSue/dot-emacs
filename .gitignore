@@ -1,7 +1,5 @@
-.cache/
-.lsp*
 auto-save-list/
-elpa*/
+elpa/*
 eshell/
 server/
 transient/

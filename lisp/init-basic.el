@@ -6,7 +6,7 @@
 
 (require 'init-const)
 
-(when is-windows
+(when windowsp
   (setq auto-mode-case-fold nil)
   (setq w32-get-true-file-attributes nil)    ; decrease file IO workload
   (setq w32-pipe-read-delay 0)
