@@ -38,18 +38,6 @@
   :ensure nil
   :hook (after-init-hook . save-place-mode))
 
-(use-package savehist
-  :ensure nil
-  :hook (after-init . savehist-mode)
-  :init (setq enable-recursive-minibuffers t ; Allow commands in minibuffers
-              history-length 1000
-              savehist-additional-variables '(mark-ring
-                                              global-mark-ring
-                                              search-ring
-                                              regexp-search-ring
-                                              extended-command-history)
-              savehist-autosave-interval 300))
-
 (use-package simple
   :ensure nil
   :hook ((after-init-hook . size-indication-mode)
@@ -81,13 +69,12 @@
 (setq-default tab-width 4)
 (setq-default indent-tabs-mode nil)
 
-(setq visible-bell t)
+(setq visible-bell nil)
 (setq inhibit-compacting-font-caches t)  ; Don’t compact font caches during GC.
 (setq make-backup-files nil)             ; Forbide to make backup files
 (setq auto-save-default nil)             ; Disable auto save
 (setq create-lockfiles nil)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets) ; Show path if names are same
-
 
 (provide 'init-basic)
 

@@ -19,7 +19,7 @@
 (setq frame-resize-pixelwise t)
 
 ;; Title
-(setq frame-title-format '("%b - 合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。"))
+(setq frame-title-format '("合抱之木，生于毫末；九层之台，起于累土；千里之行，始于足下。- %b"))
 (setq icon-title-format frame-title-format)
 
 ;; Theme
@@ -46,7 +46,7 @@
 ;; Show line numbers
 (use-package display-line-numbers
   :ensure nil
-  :hook (after-init-hook . display-line-numbers-mode)
+  :hook (after-init-hook . global-display-line-numbers-mode)
   :init (setq display-line-numbers-width-start t))
 
 ;; Suppress GUI features
@@ -77,12 +77,12 @@
 (setq mouse-wheel-follow-mouse 't)
 
 ;; Good pixel line scrolling
-;;(if (fboundp 'pixel-scroll-precision-mode)
-;;    (pixel-scroll-precision-mode t)
-;;  (when (and emacs/>=27p (not sys/macp))
-;;    (use-package good-scroll
-;;      :diminish
-;;      :hook (after-init . good-scroll-mode))))
+(if (fboundp 'pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode t)
+  (when (and emacs/>=27p (not sys/macp))
+    (use-package good-scroll
+      :diminish
+      :hook (after-init . good-scroll-mode))))
 
 ;; Use fixed pitch where it's sensible
 (use-package mixed-pitch

@@ -31,21 +31,4 @@
     (setq ivy-dynamic-exhibit-delay-ms 200))
   )
 
-(when (childframe-workable-p)
-  (use-package ivy-posframe
-    :diminish
-    ;;:hook (ivy-mode-hook . ivy-postframe-mode)
-    :init
-    (setq ivy-height 15)                 ; Use bigger minibuffer height for child frame
-    (setq ivy-posframe-border-width 2)
-    (setq ivy-posframe-parameters '((left-fringe . 8)
-                                    (right-fringe . 8)))
-    :config
-    ;; Adjust the postion
-    (defun ivy-posframe-display-at-frame-center-near-bottom (str)
-      (ivy-posframe--display str #'posframe-poshandler-frame-center-near-bottom))
-    (setf (alist-get t ivy-posframe-display-functions-alist)
-          #'ivy-posframe-display-at-frame-center-near-bottom))
-  )
-
 (provide 'init-ivy)
