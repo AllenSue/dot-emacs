@@ -51,10 +51,18 @@
   (evil-define-key 'normal 'global (kbd "<leader>gs") 'magit-status)
 
   ;; lsp
-  (evil-define-key '(normal) lsp-mode-map (kbd "<leader>ld") 'lsp-find-definition)
-  (evil-define-key '(normal) lsp-mode-map (kbd "<leader>lf") 'lsp-format-buffer)
-  (evil-define-key '(normal) lsp-mode-map (kbd "<leader>ln") 'lsp-rename)
-  (evil-define-key '(normal) lsp-mode-map (kbd "<leader>lr") 'lsp-find-references)
+  (with-eval-after-load 'lsp-mode
+    (evil-define-key '(normal) lsp-mode-map (kbd "<leader>ld") 'lsp-find-definition)
+    (evil-define-key '(normal) lsp-mode-map (kbd "<leader>lf") 'lsp-format-buffer)
+    (evil-define-key '(normal) lsp-mode-map (kbd "<leader>ln") 'lsp-rename)
+    (evil-define-key '(normal) lsp-mode-map (kbd "<leader>lr") 'lsp-find-references)
+    )
+
+  ;; org
+  (evil-define-key '(normal) 'global (kbd "<leader>oa") 'org-agenda)
+  (evil-define-key '(normal) 'global (kbd "<leader>ob") 'org-switchb)
+  (evil-define-key '(normal) 'global (kbd "<leader>oc") 'org-capture)
+  (evil-define-key '(normal) org-mode-map (kbd "<leader>or") 'org-refile)
 
   ;; project
   (evil-define-key 'normal 'global (kbd "<leader>p") 'projectile-command-map)

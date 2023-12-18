@@ -30,12 +30,15 @@
 (update-load-path)
 
 (require 'init-package)
+
 (require 'init-basic)
 (require 'init-ui)
+
 (require 'init-edit)
 (require 'init-evil)
 (require 'init-ivy)
 (require 'init-company)
+(require 'init-org)
 
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 (require 'init-core)

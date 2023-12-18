@@ -4,8 +4,6 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "edit" user-emacs-directory))
-
 ;; Delete selection if you insert
 (use-package delsel
   :ensure nil
@@ -89,12 +87,6 @@
 ;; Treat undo history as a tree
 (use-package vundo
   :config (setq vundo-glyph-alist vundo-unicode-symbols))
-
-;;(require 'init-flycheck)
-;;(require 'init-ivy)
-;;(require 'init-which-key)
-;;(require 'init-ripgrep)
-;;(require 'init-yasnippet)
 
 (provide 'init-edit)
 
