@@ -3,7 +3,6 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'init-funcs)
 
 ;; Optimization
 (setq idle-update-delay 1.0)
@@ -92,34 +91,6 @@
 (use-package page-break-lines
   :diminish
   :hook (after-init . global-page-break-lines-mode))
-
-;; Child frame
-(when (childframe-workable-p)
-  (use-package posframe
-    :hook (after-load-theme-hook . posframe-delete-all)
-    :init
-    (defface posframe-border
-      `((t (:inherit region)))
-      "Face used by the `posframe' border."
-      :group 'posframe)
-
-    (with-eval-after-load 'persp-mode
-      (add-hook 'persp-load-buffer-functions
-                (lambda (&rest _)
-                  (posframe-delete-all))))
-    :config
-    (with-no-warnings
-      (defun my-posframe--prettify-frame (&rest _)
-        (set-face-background 'fringe nil posframe--frame))
-      (advice-add #'posframe--create-posframe :after #'my-posframe--prettify-frame)
-
-      (defun posframe-poshandler-frame-center-near-bottom (info)
-        (cons (/ (- (plist-get info :parent-frame-width)
-                    (plist-get info :posframe-width))
-                 2)
-              (/ (+ (plist-get info :parent-frame-height)
-                    (* 2 (plist-get info :font-height)))
-                 2))))))
 
 ;; Don't use GTK+ tooltip
 (when (boundp 'x-gtk-use-system-tooltips)
