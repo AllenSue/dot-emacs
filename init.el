@@ -31,6 +31,7 @@
 
 (require 'init-package)
 
+(require 'init-accessibility)
 (require 'init-basic)
 (require 'init-ui)
 
