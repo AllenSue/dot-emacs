@@ -18,6 +18,8 @@
   (setq evil-move-cursor-back nil)
   (setq evil-shift-width 0)
 
+  ;; Initial state
+  (evil-set-initial-state 'eshell-mode 'emacs)
 
   ;; Set <space> as leader key
   (evil-set-leader '(normal visual motion) (kbd "<SPC>"))
@@ -89,16 +91,13 @@
   (evil-define-key 'normal 'global (kbd "<leader>wp") 'popwin:keymap)
   (evil-define-key 'normal 'global (kbd "<leader>wv") 'evil-window-vsplit)
 
-;;; Specific mode keybindings
+  ;;; Specific mode keybindings
 
   ;; Info mode
   (if (display-graphic-p)
       (evil-define-key '(normal visual motion) Info-mode-map (kbd "<return>") 'Info-follow-nearest-node)
     (evil-define-key '(normal visual motion) Info-mode-map (kbd "RET") 'Info-follow-nearest-node))
   (evil-define-key '(normal visual motion) Info-mode-map (kbd "n") 'Info-next)
-
-  ;; lsp mode
-  (evil-define-key '(normal visual motion) lsp-mode-map (kbd "<leader>lr") 'xref-find-references)
   )
 
 (use-package evil-collection

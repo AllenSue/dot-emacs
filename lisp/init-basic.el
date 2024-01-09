@@ -33,6 +33,11 @@
   (set-charset-priority 'unicode))
 (setq system-time-locale "C")
 
+(when (display-graphic-p)
+  (use-package hl-line
+    :ensure nil
+    :hook (after-init-hook . global-hl-line-mode)))
+
 ;; History
 (use-package saveplace
   :ensure nil
@@ -75,6 +80,11 @@
 (setq auto-save-default nil)             ; Disable auto save
 (setq create-lockfiles nil)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets) ; Show path if names are same
+
+;; Window
+(use-package winner-mode
+  :ensure nil
+  :hook (after-init-hook . winner-mode))
 
 (provide 'init-basic)
 
