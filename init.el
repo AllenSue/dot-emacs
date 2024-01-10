@@ -4,8 +4,8 @@
 
 ;;; Code:
 
-(when (version< emacs-version "27.1")
-  (error "This requires Emacs 27.1 and above!"))
+(when (version< emacs-version "28.1")
+  (error "This requires Emacs 28.1 and above!"))
 
 ;; Prevent flashing of unstyled modeline at startup
 (setq-default mode-line-format nil)
@@ -35,6 +35,7 @@
 (require 'init-basic)
 (require 'init-ui)
 
+(require 'init-dired)
 (require 'init-edit)
 (require 'init-evil)
 (require 'init-ivy)
