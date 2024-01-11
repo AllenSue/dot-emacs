@@ -46,7 +46,8 @@
 (use-package simple
   :ensure nil
   :hook ((after-init-hook . size-indication-mode)
-         (text-mode-hook . visual-line-mode))
+         (text-mode-hook . visual-line-mode)
+         (org-mode-hook . visual-line-mode))
 
   :init
   (setq column-number-mode t)
@@ -82,7 +83,7 @@
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets) ; Show path if names are same
 
 ;; Window
-(use-package winner-mode
+(use-package winner
   :ensure nil
   :hook (after-init-hook . winner-mode))
 

@@ -7,13 +7,13 @@
 ;; Delete selection if you insert
 (use-package delsel
   :ensure nil
-  :hook (after-init . delete-selection-mode))
+  :hook (after-init-hook . delete-selection-mode))
 
 ;; Automatically reload files was modified by external program
 (use-package autorevert
   :ensure nil
   :diminish
-  :hook (after-init . global-auto-revert-mode))
+  :hook (after-init-hook . global-auto-revert-mode))
 
 ;; A comprehensive visual interface to diff & patch
 (use-package ediff
