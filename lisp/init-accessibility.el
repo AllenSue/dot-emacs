@@ -1,5 +1,18 @@
 ;; init-accessibility.el --- Initialize Org configurations.	-*- lexical-binding: t -*-
 
+(use-package helpful
+  :bind (([remap describe-function] . helpful-callable)
+         ([remap describe-command] . helpful-command)
+         ([remap describe-variable] . helpful-variable)
+         ([remap describe-key] . helpful-key)
+         ([remap describe-symbol] . helpful-symbol))
+  :init
+  (with-eval-after-load 'counsel
+    (setq counsel-describe-function-function #'helpful-callable)
+    (setq counsel-describe-variable-function #'helpful-variable)
+    (setq counsel-describe-symbol-function #'helpful-symbol)
+    (setq counsel-descbinds-function #'helpful-callable)))
+
 (use-package which-key
   :diminish
   :hook (after-init-hook . which-key-mode)
