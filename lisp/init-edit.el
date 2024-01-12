@@ -44,7 +44,8 @@
   (setq avy-all-windows nil)
   (setq avy-all-windows-alt t)
   (setq avy-background t)
-  (setq avy-style 'pre))
+  (setq avy-style 'pre)
+  (setq avy-timeout-seconds 1.0))
 
 (use-package aggressive-indent
   :diminish
