@@ -72,6 +72,7 @@
 
 ;; Multiple cursors
 (use-package multiple-cursors
+  :bind ("M-n" . mc/mark-next-like-this)
   )
 
 ;; Hungry deletion
@@ -86,8 +87,11 @@
          ([remap move-end-of-line] . mwim-end-of-code-or-line)))
 
 ;; Treat undo history as a tree
-(use-package vundo
-  :config (setq vundo-glyph-alist vundo-unicode-symbols))
+(use-package undo-tree
+  :diminish
+  :hook (after-init-hook . global-undo-tree-mode)
+  :init
+  (setq undo-tree-auto-save-history nil))
 
 (provide 'init-edit)
 

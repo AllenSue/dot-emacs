@@ -79,7 +79,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>sd") 'swiper-isearch)
 
   ;; undo
-  (evil-define-key 'normal 'global (kbd "<leader>uv") 'vundo)
+  (evil-define-key 'normal 'global (kbd "<leader>uv") 'undo-tree-visualize)
 
   ;; window
   (evil-define-key 'normal 'global (kbd "<leader>w2") 'evil-window-split)
