@@ -33,6 +33,7 @@
 
 (require 'init-accessibility)
 (require 'init-basic)
+(require 'init-calendar)
 (require 'init-ui)
 
 (require 'init-dired)
