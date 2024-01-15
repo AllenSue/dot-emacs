@@ -13,6 +13,16 @@
     (setq counsel-describe-symbol-function #'helpful-symbol)
     (setq counsel-descbinds-function #'helpful-callable)))
 
+(use-package diff-hl
+  :hook ((after-init-hook . global-diff-hl-mode)
+         (dired-mode-hook . diff-hl-dired-mode)
+         (magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
+         (magit-post-refresh-hook . diff-hl-magit-post-refresh))
+  :config
+  (unless (display-graphic-p)
+    (diff-hl-margin-mode 1))
+  )
+
 (use-package which-key
   :diminish
   :hook (after-init-hook . which-key-mode)
