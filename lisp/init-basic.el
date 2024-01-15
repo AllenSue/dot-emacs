@@ -43,12 +43,20 @@
   :ensure nil
   :hook (after-init-hook . save-place-mode))
 
+(use-package savehist
+  :ensure nil
+  :hook (after-init-hook . savehist-mode)
+  :init
+  (setq enable-recursive-minibuffers t)
+  (setq history-length 1000)
+  (setq savehist-additional-variables '(extended-command-history))
+  (setq savehist-autosave-interval 300))
+
 (use-package simple
   :ensure nil
   :hook ((after-init-hook . size-indication-mode)
          (text-mode-hook . visual-line-mode)
          (org-mode-hook . visual-line-mode))
-
   :init
   (setq column-number-mode t)
   (setq line-number-mode t)
