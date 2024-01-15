@@ -5,28 +5,81 @@
   :init
   (setq org-directory (expand-file-name "~/org/"))
   :config
-  (setq org-todo-keywords
-        '((sequence "TODO(t)" "|" "DONE(d)" "CANCELLED(c)")))
-  (setq org-agenda-files `(,(concat org-directory "agenda/")))
-  (setq org-agenda-include-diary t)
-  (setq org-agenda-restore-windows-after-quit t)
-  (setq org-agenda-start-on-weekday nil)
-  (setq org-agenda-window-setup 'only-window)
+  (set-face-attribute 'org-level-1 nil :height 1.35 :weight 'bold)
 
-  (setq org-default-notes-file '(file ,(concat org-directory "tmp.org")))
-  (setq org-capture-templates `(("i" "Idea" entry (file ,(concat org-directory "/idea.org"))
-                                 "* %^{Title} %?\n%U\n")
-                                ("t" "Todo" entry (file ,(concat org-directory "/agenda/todo.org"))
-                                 "* TODO %?\n%U\n" :clock-in t :clock-resume t)
-                                ("n" "Note" entry (file ,(concat org-directory "/notes/note.org"))
-                                 "* %? :NOTE:\n%U\n" :clock-in t :clock-resume t)))
+  (setq org-todo-keywords
+        '((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)" "CANCELLED(c)")))
+  (setq org-agenda-files `(,(concat org-directory "agenda/")))
+
+  (setq org-blank-before-new-entry '((heading . t)
+                                     (plain-list-item . auto)))
+  (setq org-closed-keep-when-no-todo t)
+
+  (setq org-default-notes-file '(file ,(concat org-directory "capture.org")))
+
+  (setq org-ellipsis " ▾")
+
+  (setq org-modules nil)
+
+  (setq org-log-done 'time)
 
   (setq org-refile-targets '((nil :maxlevel . 5)
                              (org-agenda-files :maxlevel . 5)))
   (setq org-refile-use-outline-path 'file)
   (setq org-refile-allow-creating-parent-nodes 'confirm)
+
+  (use-package org-agenda
+    :ensure nil
+    :config
+    (setq org-agenda-include-diary t)
+    (setq org-agenda-time-grid '((daily today)
+                                 (0600 0800 1000 1200
+                                       1400 1600 1800
+                                       2000 2200 2400)
+                                 "......" "----------------"))
+    (setq org-agenda-current-time-string "⏰------------now")
+    (setq org-agenda-restore-windows-after-quit t)
+    (setq org-agenda-start-on-weekday 1)
+    (setq org-agenda-use-time-grid t)
+    (setq org-agenda-window-setup 'only-window)
+    )
+
+  (use-package org-capture
+    :ensure nil
+    :config
+    (setq org-capture-templates `(("i"
+                                   "Idea"
+                                   entry (file ,(concat org-directory "/idea.org"))
+                                   "* %^{Title} %?\n%U\n")
+                                  ("t"
+                                   "Todo"
+                                   entry (file ,(concat org-directory "/agenda/todo.org"))
+                                   "* TODO %?\n%U\n"
+                                   :clock-in t
+                                   :clock-resume t
+                                   :empty-lines-after 1
+                                   :prepend t)
+                                  ("n"
+                                   "Note"
+                                   entry (file ,(concat org-directory "/notes/note.org"))
+                                   "* %? :NOTE:\n%U\n"
+                                   :clock-in t
+                                   :clock-resume t))))
+
+  (use-package org-modern
+    :hook ((org-mode-hook . org-modern-mode)
+           (org-modern-hook . my/org-modern-mode-hook))
+    :config
+    (defun my/org-modern-mode-hook()
+      (setq prettify-symbols-alist nil)
+      (setq prettify-symbols-mode nil)))
+
+  (use-package org-roam
+    )
   )
+
+(use-package plantuml-mode)
 
 (provide 'init-org)
 
-;;; init-org.el ends here
+;; init-org ends here
