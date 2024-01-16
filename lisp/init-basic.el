@@ -90,11 +90,6 @@
 (setq create-lockfiles nil)
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets) ; Show path if names are same
 
-;; Window
-(use-package winner
-  :ensure nil
-  :hook (after-init-hook . winner-mode))
-
 (provide 'init-basic)
 
 ;;; init-basic.el ends here

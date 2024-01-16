@@ -35,6 +35,7 @@
 (require 'init-basic)
 (require 'init-calendar)
 (require 'init-ui)
+(require 'init-window)
 
 (require 'init-company)
 (require 'init-dired)
