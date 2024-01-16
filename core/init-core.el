@@ -7,10 +7,8 @@
 (require 'init-utils)
 (require 'init-elpa)
 
-(require 'init-broswer)
 (require 'init-git)
 (require 'init-misc)
-(require 'init-org)
 (require 'init-program)
 
 (defun my-cleanup-gc ()
