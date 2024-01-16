@@ -8,7 +8,7 @@
   (set-face-attribute 'org-level-1 nil :height 1.35 :weight 'bold)
 
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "WIP(i)" "|" "DONE(d)" "CANCELLED(c)")))
+        '((sequence "TODO(t)" "WIP(i)" "PENDING(p)" "|" "DONE(d)" "CANCELLED(c)")))
   (setq org-agenda-files `(,(concat org-directory "agenda/")))
 
   (setq org-blank-before-new-entry '((heading . t)
@@ -32,39 +32,52 @@
     :ensure nil
     :config
     (setq org-agenda-include-diary t)
+    (setq org-agenda-restore-windows-after-quit t)
+    (setq org-agenda-start-on-weekday 1)
+    (setq org-agenda-use-time-grid t)
+    (setq org-agenda-window-setup 'only-window)
+
+    (setq org-agenda-current-time-string "⏰------------now")
     (setq org-agenda-time-grid '((daily today)
                                  (0600 0800 1000 1200
                                        1400 1600 1800
                                        2000 2200 2400)
                                  "......" "----------------"))
-    (setq org-agenda-current-time-string "⏰------------now")
-    (setq org-agenda-restore-windows-after-quit t)
-    (setq org-agenda-start-on-weekday 1)
-    (setq org-agenda-use-time-grid t)
-    (setq org-agenda-window-setup 'only-window)
+
+    (setq org-agenda-custom-commands
+          '(("j" "My Agenda View"
+             ((tags "PRIORITY=\"A\""
+                    ((org-agenda-block-separator nil)
+                     (org-agenda-skip-function '(org-agenda-skip-entry-if 'done))
+                     (org-agenda-overriding-header "High priority tasks:")))
+              (agenda ""
+                      ((org-agenda-block-separator nil)
+                       (org-agenda-span 'day)
+                       (org-agenda-overriding-header "Today tasks:")))))))
     )
 
   (use-package org-capture
     :ensure nil
     :config
-    (setq org-capture-templates `(("i"
-                                   "Idea"
-                                   entry (file ,(concat org-directory "/idea.org"))
-                                   "* %^{Title} %?\n%U\n")
-                                  ("t"
-                                   "Todo"
-                                   entry (file ,(concat org-directory "/agenda/todo.org"))
-                                   "* TODO %?\n%U\n"
-                                   :clock-in t
-                                   :clock-resume t
-                                   :empty-lines-after 1
-                                   :prepend t)
-                                  ("n"
-                                   "Note"
-                                   entry (file ,(concat org-directory "/notes/note.org"))
-                                   "* %? :NOTE:\n%U\n"
-                                   :clock-in t
-                                   :clock-resume t))))
+    (setq org-capture-templates
+          `(("i"
+             "Idea"
+             entry (file ,(concat org-directory "/idea.org"))
+             "* %^{Title} %?\n%U\n")
+            ("t"
+             "Todo"
+             entry (file ,(concat org-directory "/agenda/todo.org"))
+             "* TODO %?\n%U\n"
+             :clock-in t
+             :clock-resume t
+             :empty-lines-after 1
+             :prepend t)
+            ("n"
+             "Note"
+             entry (file ,(concat org-directory "/notes/note.org"))
+             "* %? :NOTE:\n%U\n"
+             :clock-in t
+             :clock-resume t))))
 
   (use-package org-modern
     :hook ((org-mode-hook . org-modern-mode)
