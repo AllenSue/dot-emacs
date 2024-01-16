@@ -27,8 +27,7 @@
   ;;; Global keybindings
 
   ;; frequent command
-  (evil-define-key '(normal motion) 'global (kbd "@") 'youdao-dictionary-search-at-point-tooltip)
-  (evil-define-key 'normal 'global (kbd "<leader><SPC>") 'counsel-M-x)
+  (evil-define-key 'normal 'global (kbd "<leader><leader>") 'counsel-M-x)
 
   ;; buffer
   (if (display-graphic-p)
@@ -39,9 +38,6 @@
 
   ;; comment
   (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
-
-  ;; errors
-  (evil-define-key '(normal) prog-mode-map (kbd "<leader>e") 'eshell)
 
   ;; file
   (evil-define-key 'normal 'global (kbd "<leader>fd") 'dired-jump)

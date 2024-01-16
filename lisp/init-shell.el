@@ -4,6 +4,8 @@
 
 ;;; Code:
 
+(require 'init-const)
+
 (use-package em-rebind
   :ensure nil
   :commands eshell-delchar-or-maybe-eof)
@@ -11,7 +13,7 @@
 (use-package esh-mode
   :ensure nil
   :bind (:map eshell-mode-map
-              ([escape] . delete-window)
+              ("C-c" . eshell-interrupt-process)
               ("C-d" . eshell-delchar-or-maybe-eof))
   :config
   (defalias 'eshell/vi 'find-file)
@@ -25,6 +27,28 @@
 (use-package esh-autosuggest
   :hook (eshell-mode-hook . esh-autosuggest-mode)
   )
+
+(with-no-warnings
+  (defvar my/shell-pop--frame nil)
+  (defvar my/shell-pop--window nil)
+
+  (defun my/shell-pop--shell (&optional arg)
+    "Run shell and return the buffer."
+    (cond ((fboundp 'vterm) (vterm arg))
+          (windowsp (eshell arg))
+          (t (shell))))
+
+  (defun my/shell-pop-toggle ()
+    "Toggle shell window."
+    (interactive)
+    (if (window-live-p my/shell-pop--window)
+        (progn
+          (delete-window my/shell-pop--window)
+          (setq my/shell-pop--window nil))
+      (setq my/shell-pop--window
+            (get-buffer-window (my/shell-pop--shell)))))
+
+  (bind-keys ("C-;"  . my/shell-pop-toggle)))
 
 (provide 'init-shell)
 
