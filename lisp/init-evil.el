@@ -41,7 +41,7 @@
   (evil-define-key 'normal 'global (kbd "<leader>cl") 'comment-line)
 
   ;; errors
-  (evil-define-key '(normal) prog-mode-map (kbd "<leader>el") 'flycheck-list-errors)
+  (evil-define-key '(normal) prog-mode-map (kbd "<leader>e") 'eshell)
 
   ;; file
   (evil-define-key 'normal 'global (kbd "<leader>fd") 'dired-jump)

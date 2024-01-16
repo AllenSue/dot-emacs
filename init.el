@@ -36,12 +36,13 @@
 (require 'init-calendar)
 (require 'init-ui)
 
+(require 'init-company)
 (require 'init-dired)
 (require 'init-edit)
 (require 'init-evil)
 (require 'init-ivy)
-(require 'init-company)
 (require 'init-org)
+(require 'init-shell)
 
 (add-to-list 'load-path (expand-file-name "core" user-emacs-directory))
 (require 'init-core)
