@@ -37,7 +37,7 @@
     (setq org-agenda-use-time-grid t)
     (setq org-agenda-window-setup 'only-window)
 
-    (setq org-agenda-current-time-string "⏰------------now")
+    (setq org-agenda-current-time-string "⏰ --- now")
     (setq org-agenda-time-grid '((daily today)
                                  (0600 0800 1000 1200
                                        1400 1600 1800
@@ -63,7 +63,8 @@
           `(("i"
              "Idea"
              entry (file ,(concat org-directory "/idea.org"))
-             "* %^{Title} %?\n%U\n")
+             "* %^{Title} %?\n%U\n"
+             :empty-lines-after 1)
             ("t"
              "Todo"
              entry (file ,(concat org-directory "/agenda/todo.org"))
@@ -77,7 +78,8 @@
              entry (file ,(concat org-directory "/notes/note.org"))
              "* %? :NOTE:\n%U\n"
              :clock-in t
-             :clock-resume t))))
+             :clock-resume t
+             :empty-lines-after 1))))
 
   (use-package org-modern
     :hook ((org-mode-hook . org-modern-mode)

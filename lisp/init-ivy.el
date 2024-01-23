@@ -28,7 +28,6 @@
 
   ;; Better performance on Windows
   (when windowsp
-    (setq ivy-dynamic-exhibit-delay-ms 200))
-  )
+    (setq ivy-dynamic-exhibit-delay-ms 200)))
 
 (provide 'init-ivy)

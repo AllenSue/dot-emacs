@@ -13,7 +13,8 @@
           ("\\*Agenda Commands\\*" :regexp t :align t :popup t)
           ("\\*Org Select\\*" :regexp t :align t :popup t)
           ("\\*Capture\\*" :regexp t :align t :popup t)
-          ("^CAPTURE-.*\\.org*" :regexp t :align t :popup t))))
+          ("^CAPTURE-.*\\.org*" :regexp t :align t :popup t)
+          ("*Messages*" :select t :size 0.4 :align t :popup t))))
 
 (use-package winner
   :ensure nil

@@ -29,9 +29,11 @@
 (use-package doom-modeline
   :hook (after-init-hook . doom-modeline-mode)
   :init
-  (setq doom-modeline-window-width-limit 110)
   (setq doom-modeline-buffer-modification-icon nil)
   (setq doom-modeline-checker-simple-format nil)
+  (setq doom-modeline-icon nil)
+  (setq doom-modeline-window-width-limit 110)
+
   (unless after-init-time
     (setq-default mode-line-format nil)))
 

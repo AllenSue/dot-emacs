@@ -14,14 +14,14 @@
   :ensure nil
   :bind (:map eshell-mode-map
               ("C-c" . eshell-interrupt-process)
-              ("C-d" . eshell-delchar-or-maybe-eof))
+              ("C-d" . eshell-delchar-or-maybe-eof)
+              ("C-r" . counsel-esh-history))
   :config
   (defalias 'eshell/vi 'find-file)
   (setq eshell-scroll-to-bottom-on-input 'this))
 
 (use-package eshell-syntax-highlighting
   :after esh-mode
-  :ensure t
   :hook (eshell-mode-hook . eshell-syntax-highlighting-global-mode))
 
 (use-package esh-autosuggest
